@@ -1,0 +1,1745 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="description" content="Ayesha's colorful student web development portfolio.">
+  <title>Ayesha | Student Portfolio</title>
+
+  <style>
+    /* ========== THEME VARIABLES ========== */
+    :root {
+      color-scheme: light;
+      --bg: #f8f7ff;
+      --surface: #ffffff;
+      --surface-soft: #f0ebff;
+      --text: #211a38;
+      --muted: #6d6680;
+      --border: #e7e0f5;
+      --primary: #7c3aed;
+      --secondary: #ec4899;
+      --cyan: #06b6d4;
+      --shadow: 0 12px 35px rgba(74, 36, 130, .10);
+      --gradient: linear-gradient(120deg, #7c3aed, #ec4899, #06b6d4);
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #100d20;
+      --surface: #1c1730;
+      --surface-soft: #28203f;
+      --text: #f7f3ff;
+      --muted: #b8aecf;
+      --border: #39304e;
+      --primary: #b794ff;
+      --secondary: #ff83c5;
+      --cyan: #56e7f5;
+      --shadow: 0 12px 35px rgba(0, 0, 0, .24);
+      --gradient: linear-gradient(120deg, #9b72ff, #ff70ba, #42d9ed);
+    }
+
+    /* ========== RESET & GLOBAL ========== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background .3s, color .3s;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--secondary);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
+    img,
+    video,
+    iframe {
+      max-width: 100%;
+    }
+
+    img {
+      display: block;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 78px 0;
+      scroll-margin-top: 76px;
+    }
+
+    .section-heading {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      max-width: 620px;
+      margin: 0 auto 38px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .gradient-text {
+      color: var(--primary);
+      background: var(--gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card {
+      min-width: 0;
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--primary);
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      color: #fff;
+      background: var(--gradient);
+      border: 0;
+      border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 7px 22px rgba(124, 58, 237, .22);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px rgba(124, 58, 237, .32);
+    }
+
+    .btn-outline {
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      color: var(--primary);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 700;
+      background: var(--surface-soft);
+      color: var(--primary);
+    }
+
+    /* ========== NAVIGATION ========== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(30, 20, 50, .05);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: .91rem;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .icon-btn,
+    .menu-btn {
+      display: grid;
+      place-items: center;
+      min-width: 42px;
+      min-height: 42px;
+      color: var(--text);
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      font-size: 1.15rem;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 105px 0 95px;
+      background:
+        radial-gradient(ellipse at 5% 10%, rgba(236, 72, 153, .17), transparent 35%),
+        radial-gradient(ellipse at 95% 80%, rgba(6, 182, 212, .17), transparent 35%),
+        var(--bg);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 14px;
+      color: var(--primary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 22px 0 16px;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 28px;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 340px;
+    }
+
+    .orb {
+      position: absolute;
+      width: 290px;
+      aspect-ratio: 1;
+      background: var(--gradient);
+      border-radius: 43% 57% 62% 38% / 43% 42% 58% 57%;
+      opacity: .9;
+      filter: saturate(1.15);
+      animation: morph 8s ease-in-out infinite, float 5s ease-in-out infinite;
+    }
+
+    .hero-emoji {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 220px;
+      aspect-ratio: 1;
+      color: white;
+      background: rgba(255, 255, 255, .17);
+      border: 1px solid rgba(255, 255, 255, .5);
+      border-radius: 35px;
+      font-size: 6rem;
+      backdrop-filter: blur(8px);
+      transform: rotate(-5deg);
+      box-shadow: 0 25px 65px rgba(91, 33, 182, .2);
+    }
+
+    .floating-chip {
+      position: absolute;
+      z-index: 1;
+      padding: 10px 15px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      font-weight: 750;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .chip-one {
+      top: 25px;
+      left: 0;
+    }
+
+    .chip-two {
+      right: 0;
+      bottom: 35px;
+      animation-delay: -2s;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 34px;
+    }
+
+    .hero-stats strong {
+      display: block;
+      font-size: 1.2rem;
+    }
+
+    .hero-stats span {
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    
+/* ========== ABOUT ========== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.about-image {
+  display: block;
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 24px;
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 18px 40px rgba(124, 58, 237, 0.2);
+}
+
+.about-copy {
+  min-width: 0;
+  padding: 10px 0;
+}
+
+.about-copy h3 {
+  margin-top: 14px;
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+.about-copy p {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+@media (max-width: 760px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .about-image {
+    height: auto;
+    max-height: 380px;
+  }
+
+  .about-copy {
+    padding: 0;
+  }
+}
+    /* ========== SKILLS ========== */
+    .skills-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .skill-card {
+      text-align: center;
+    }
+
+    .skill-icon {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 14px;
+      background: var(--surface-soft);
+      border-radius: 19px;
+      font-size: 1.8rem;
+    }
+
+    .skill-card h3 {
+      margin: 8px 0;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .progress {
+      height: 8px;
+      margin-top: 17px;
+      overflow: hidden;
+      background: var(--surface-soft);
+      border-radius: 999px;
+    }
+
+    .progress span {
+      display: block;
+      width: var(--level);
+      height: 100%;
+      background: var(--gradient);
+      border-radius: inherit;
+      transform-origin: left;
+      animation: grow 1.2s ease-out both;
+    }
+
+    /* ========== GOALS ========== */
+    .goals-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .goal-card {
+      text-align: center;
+      padding: 22px 13px;
+    }
+
+    .goal-number {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin: 0 auto 12px;
+      color: white;
+      background: var(--gradient);
+      border-radius: 14px;
+      font-weight: 900;
+    }
+
+    .goal-card p {
+      margin: 0;
+      font-weight: 650;
+      font-size: .93rem;
+    }
+
+    /* ========== COURSES ========== */
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      color: white;
+      background: linear-gradient(110deg, #7c3aed, #c026d3);
+      font-size: .9rem;
+    }
+
+    tbody tr {
+      transition: background .2s;
+    }
+
+    tbody tr:hover {
+      background: var(--surface-soft);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .completed {
+      color: #087f5b;
+      background: #d1fae5;
+    }
+
+    .in-progress {
+      color: #925500;
+      background: #fef3c7;
+    }
+
+    .upcoming {
+      color: #5b35b1;
+      background: #ede9fe;
+    }
+
+    /* ========== REGISTRATION ========== */
+    .form-layout {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .form-aside {
+      position: sticky;
+      top: 95px;
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(145deg, #7c3aed, #c026d3 55%, #0891b2);
+      border-radius: 24px;
+      padding: 30px;
+    }
+
+    .form-aside h3 {
+      font-size: 1.8rem;
+      line-height: 1.25;
+    }
+
+    .form-aside p,
+    .form-aside li {
+      color: rgba(255, 255, 255, .9);
+    }
+
+    .form-aside ul {
+      padding-left: 20px;
+    }
+
+    .registration-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field > label,
+    .field-label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: .92rem;
+      font-weight: 750;
+    }
+
+    .field input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, .1);
+    }
+
+    .field input[type="file"] {
+      display: block;
+      width: 100%;
+      color: var(--muted);
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+    }
+
+    .choice {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+    }
+
+    .choice input {
+      accent-color: var(--primary);
+      width: 17px;
+      height: 17px;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .form-message {
+      display: none;
+      padding: 15px;
+      border: 1px solid #34d399;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--text);
+    }
+
+    .form-message.show {
+      display: block;
+      animation: appear .3s ease-out;
+    }
+
+    .hint {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* ========== MEDIA ========== */
+    .media-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .media-card h3 {
+      margin-top: 0;
+    }
+
+    .media-card img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .media-card audio,
+    .media-card video {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .media-card iframe {
+      display: block;
+      width: 100%;
+      min-height: 280px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    /* ========== LINKS ========== */
+    .links-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--text);
+    }
+
+    .resource-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: var(--surface-soft);
+      border-radius: 16px;
+      font-size: 1.5rem;
+    }
+
+    .resource-link p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* ========== CONTACT & FOOTER ========== */
+    .contact-panel {
+      padding: 40px;
+      color: white;
+      background: linear-gradient(120deg, #6d28d9, #c026d3, #0891b2);
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin: 0 0 10px;
+    }
+
+    .contact-panel p {
+      margin: 9px 0;
+    }
+
+    .contact-panel a {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    footer {
+      padding: 25px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      color: white;
+      background: var(--gradient);
+      border: 0;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      font-size: 1.3rem;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes morph {
+      0%, 100% { border-radius: 43% 57% 62% 38% / 43% 42% 58% 57%; }
+      50% { border-radius: 60% 40% 38% 62% / 55% 60% 40% 45%; }
+    }
+
+    @keyframes grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 960px) {
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-links a {
+        font-size: .82rem;
+      }
+
+      .hero-grid {
+        gap: 25px;
+      }
+
+      .goals-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .form-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .form-aside {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .menu-btn {
+        display: grid;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        padding-block: 12px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 12px;
+        font-size: .95rem;
+        border-radius: 10px;
+      }
+
+      .nav-links a:hover {
+        background: var(--surface-soft);
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-copy > p {
+        margin-inline: auto;
+      }
+
+      .hero-buttons,
+      .hero-stats {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        min-height: 290px;
+      }
+
+      .orb {
+        width: 240px;
+      }
+
+      .hero-emoji {
+        width: 175px;
+        font-size: 4.5rem;
+      }
+
+      .about-image {
+        max-height: 330px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: 92%;
+      }
+
+      .brand {
+        font-size: 1.05rem;
+      }
+
+      .nav-actions {
+        gap: 6px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .skills-grid,
+      .media-grid,
+      .links-grid,
+      .goals-grid,
+      .registration-form {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .form-aside,
+      .contact-panel {
+        padding: 25px 20px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        font-size: .87rem;
+      }
+
+      .floating-chip {
+        font-size: .85rem;
+      }
+
+      .chip-one {
+        left: 0;
+      }
+
+      .chip-two {
+        right: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a class="brand gradient-text" href="#home">✦ Ayesha.dev</a>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle"
+          type="button" aria-label="Switch to dark mode"
+          title="Toggle color theme">🌙</button>
+
+        <button class="menu-btn" id="menuToggle"
+          type="button" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#courses">Courses</a>
+        <a href="#registration">Register</a>
+        <a href="#media">Media</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO / HOME -->
+    <header class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">✨ Student Developer in Progress</span>
+
+          <h1>
+            Hello, I'm<br>
+            <span class="gradient-text">Ayesha!</span>
+          </h1>
+
+          <p>
+            Welcome to my creative corner of the internet.
+            I'm learning web development, exploring new technologies,
+            and turning ideas into beautiful websites.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="btn" href="#about">Explore My Portfolio ↗</a>
+            <a class="btn btn-outline" href="#contact">Let's Connect 💌</a>
+          </div>
+
+          <div class="hero-stats">
+            <div><strong>💻 Coding</strong><span>Learning by building</span></div>
+            <div><strong>🚀 Growing</strong><span>One project at a time</span></div>
+            <div><strong>📍 Karachi</strong><span>Pakistan</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Decorative coding illustration">
+          <div class="orb" aria-hidden="true"></div>
+          <div class="floating-chip chip-one">✦ Creative mind</div>
+          <div class="hero-emoji" aria-hidden="true">👩🏻‍💻</div>
+          <div class="floating-chip chip-two">{"< Hello World />"}</div>
+        </div>
+      </div>
+    </header>
+
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-heading">
+      A Little <span class="gradient-text">About Me</span>
+    </h2>
+
+    <p class="section-subtitle">
+      Every expert starts as a beginner. Here's my story.
+    </p>
+
+    <div class="about-grid">
+      <!-- LEFT SIDE: IMAGE -->
+      <div class="about-visual">
+        <img
+          class="about-image"
+          src="./About_Me.JPG"
+          alt="A student working on a laptop"
+          width="600"
+          height="750"
+          loading="lazy"
+        >
+      </div>
+
+      <!-- RIGHT SIDE: TEXT -->
+      <div class="about-copy">
+        <span class="pill">Nice to meet you!</span>
+
+        <h3>I'm Ayesha 🌷</h3>
+
+        <p>
+          I'm learning <strong>Web Development</strong> and currently
+          practicing <strong>HTML</strong>. I enjoy discovering how
+          websites work and designing pages that feel engaging.
+        </p>
+
+        <p>
+          📍 I live in Karachi, Pakistan.
+          <br>
+          🎯 My goal is to become a Frontend &amp; Backend Developer.
+        </p>
+
+        <p>
+          I'm building my skills step by step, learning from mistakes,
+          and working toward creating real-world projects.
+        </p>
+
+        <div class="about-tags">
+          <span class="pill">Creative 🎨</span>
+          <span class="pill">Curious 💡</span>
+          <span class="pill">Always Learning 🌱</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills" style="background:var(--surface-soft)">
+      <div class="container">
+        <h2 class="section-heading">My <span class="gradient-text">Tech Toolkit</span></h2>
+        <p class="section-subtitle">
+          Technologies I'm learning and practicing on my developer journey.
+          Progress bars are illustrative, not measured assessments.
+        </p>
+
+        <div class="grid skills-grid">
+          <article class="card skill-card reveal">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML</h3>
+            <p>The structure behind web pages.</p>
+            <div class="progress" role="img" aria-label="Illustrative HTML progress: 85%">
+              <span style="--level:85%"></span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-icon">🎨</div>
+            <h3>CSS</h3>
+            <p>Styling, layouts, colors, and animations.</p>
+            <div class="progress" role="img" aria-label="Illustrative CSS progress: 45%">
+              <span style="--level:45%"></span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-icon">⚡</div>
+            <h3>JavaScript</h3>
+            <p>Making websites interactive.</p>
+            <div class="progress" role="img" aria-label="Illustrative JavaScript progress: 25%">
+              <span style="--level:25%"></span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-icon">🔧</div>
+            <h3>Git</h3>
+            <p>Tracking changes in projects.</p>
+            <div class="progress" role="img" aria-label="Illustrative Git progress: 20%">
+              <span style="--level:20%"></span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-icon">🐙</div>
+            <h3>GitHub</h3>
+            <p>Hosting code and collaborating.</p>
+            <div class="progress" role="img" aria-label="Illustrative GitHub progress: 20%">
+              <span style="--level:20%"></span>
+            </div>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-icon">⚛️</div>
+            <h3>React</h3>
+            <p>Building interfaces with components.</p>
+            <div class="progress" role="img" aria-label="Illustrative React progress: 10%">
+              <span style="--level:10%"></span>
+            </div>
+          </article>
+        </div>
+
+        <h2 class="section-heading" style="margin-top:65px">
+          My Learning <span class="gradient-text">Roadmap</span>
+        </h2>
+        <p class="section-subtitle">Small steps. Big dreams. 🚀</p>
+
+        <div class="grid goals-grid">
+          <article class="card goal-card reveal">
+            <span class="goal-number">01</span>
+            <p>Complete HTML</p>
+          </article>
+          <article class="card goal-card reveal">
+            <span class="goal-number">02</span>
+            <p>Learn CSS</p>
+          </article>
+          <article class="card goal-card reveal">
+            <span class="goal-number">03</span>
+            <p>Master JavaScript</p>
+          </article>
+          <article class="card goal-card reveal">
+            <span class="goal-number">04</span>
+            <p>Build Projects</p>
+          </article>
+          <article class="card goal-card reveal">
+            <span class="goal-number">05</span>
+            <p>Get an Internship</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section class="section" id="courses">
+      <div class="container">
+        <h2 class="section-heading">My Learning <span class="gradient-text">Journey</span></h2>
+        <p class="section-subtitle">
+          My current courses, their duration, and learning status.
+        </p>
+
+        <div class="table-wrap reveal">
+          <table>
+            <caption style="padding:12px;text-align:left;color:var(--muted)">
+              Ayesha's web development courses
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🌐 HTML</td>
+                <td>Sir Usama</td>
+                <td>2 Weeks</td>
+                <td><span class="status completed">✓ Completed</span></td>
+              </tr>
+              <tr>
+                <td>🎨 CSS</td>
+                <td>Sir Usama</td>
+                <td>3 Weeks</td>
+                <td><span class="status in-progress">◷ In Progress</span></td>
+              </tr>
+              <tr>
+                <td>⚡ JavaScript</td>
+                <td>Sir Usama</td>
+                <td>4 Weeks</td>
+                <td><span class="status upcoming">◎ Upcoming</span></td>
+              </tr>
+              <tr>
+                <td>🔧 Git</td>
+                <td>Sir Usama</td>
+                <td>1 Day</td>
+                <td><span class="status upcoming">◎ Upcoming</span></td>
+              </tr>
+              <tr>
+                <td>🐙 GitHub</td>
+                <td>Sir Usama</td>
+                <td>1 Day</td>
+                <td><span class="status upcoming">◎ Upcoming</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTRATION -->
+    <section class="section" id="registration" style="background:var(--surface-soft)">
+      <div class="container">
+        <h2 class="section-heading">Student <span class="gradient-text">Registration</span></h2>
+        <p class="section-subtitle">
+          Fill out the form below to try the interactive registration demo.
+        </p>
+
+        <div class="form-layout">
+          <aside class="form-aside">
+            <div style="font-size:3rem" aria-hidden="true">💌</div>
+            <h3>Your next chapter starts here!</h3>
+            <p>
+              Practice filling in your details using this client-side
+              demonstration form.
+            </p>
+            <ul>
+              <li>Accessible form labels</li>
+              <li>Required-field validation</li>
+              <li>Email and password checks</li>
+              <li>Profile picture selection</li>
+            </ul>
+            <p><small>Demo only: information is not sent to a server.</small></p>
+          </aside>
+
+          <div class="card">
+            <form id="registrationForm" class="registration-form">
+              <div class="field">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name"
+                  placeholder="Enter your full name"
+                  autocomplete="name" minlength="2" maxlength="80" required>
+              </div>
+
+              <div class="field">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email" required>
+              </div>
+
+              <div class="field">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password"
+                  placeholder="At least 8 characters"
+                  autocomplete="new-password"
+                  minlength="8" required>
+                <small class="hint">Use at least 8 characters.</small>
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone"
+                  placeholder="+92 300 1234567"
+                  autocomplete="tel">
+              </div>
+
+              <div class="field">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" autocomplete="bday">
+              </div>
+
+              <fieldset class="field" style="border:0;padding:0;margin:0">
+                <legend class="field-label">Gender</legend>
+                <div class="choice-row">
+                  <label class="choice">
+                    <input type="radio" name="gender" value="male"> Male
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="gender" value="female"> Female
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset class="field full" style="border:0;padding:0;margin:0">
+                <legend class="field-label">Select Skills</legend>
+                <div class="choice-row">
+                  <label class="choice">
+                    <input type="checkbox" name="skills" value="HTML"> HTML
+                  </label>
+                  <label class="choice">
+                    <input type="checkbox" name="skills" value="CSS"> CSS
+                  </label>
+                  <label class="choice">
+                    <input type="checkbox" name="skills" value="JavaScript"> JavaScript
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="field full">
+                <label for="course">Select Course</label>
+                <select id="course" name="course">
+                  <option value="">Choose a course</option>
+                  <option value="HTML">HTML</option>
+                  <option value="CSS">CSS</option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="React">React</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="photo">Upload Profile Picture</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+                <small class="hint" id="photoHint">Optional. Image files only, up to 5 MB.</small>
+              </div>
+
+              <div class="field full">
+                <label for="about-me">Write About Yourself</label>
+                <textarea id="about-me" name="about" rows="5"
+                  maxlength="1000"
+                  placeholder="Tell us a little about yourself..."></textarea>
+              </div>
+
+              <div class="field full form-actions">
+                <button class="btn" type="submit">Submit Registration ✨</button>
+                <button class="btn btn-outline" type="reset">Reset Form ↺</button>
+              </div>
+
+              <div class="field full">
+                <div class="form-message" id="formMessage"
+                  role="status" aria-live="polite" tabindex="-1"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDIA -->
+    <section class="section" id="media">
+      <div class="container">
+        <h2 class="section-heading">My Creative <span class="gradient-text">Media Space</span></h2>
+        <p class="section-subtitle">
+          A place for pictures, audio, video, and useful web content.
+        </p>
+
+        <div class="grid media-grid">
+          <article class="card media-card reveal">
+            <h3>📸 Coding Inspiration</h3>
+            <img src="./Media_Image.JPG"
+              alt="Coding workspace"
+              width="600" height="400" loading="lazy"
+            >
+          </article>
+
+          <article class="card media-card reveal">
+            <h3>🎵 Audio Corner</h3>
+            <p>Listen to your selected audio file.</p>
+            <audio controls preload="metadata">
+              <source src="Media_audio.ogv" type="audio/ogg">
+              Your browser does not support audio playback.
+            </audio>
+            <small class="hint">Make sure this file contains playable audio.</small>
+          </article>
+
+          <article class="card media-card reveal">
+            <h3>🎬 Video Corner</h3>
+            <video controls preload="metadata" playsinline>
+              <source src="Media_Video.mp4" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+          </article>
+
+          <article class="card media-card reveal">
+            <h3>🌍 Explore Wikipedia</h3>
+            <iframe
+              src="https://www.wikipedia.org/"
+              title="Wikipedia website"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+            <p class="hint">
+              Some websites may block embedding. If it doesn't load,
+              <a href="https://www.wikipedia.org/" target="_blank"
+                rel="noopener noreferrer">open Wikipedia in a new tab</a>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- USEFUL LINKS -->
+    <section class="section" id="resources" style="background:var(--surface-soft)">
+      <div class="container">
+        <h2 class="section-heading">My Favorite <span class="gradient-text">Resources</span></h2>
+        <p class="section-subtitle">
+          Useful places to keep learning and building.
+        </p>
+
+        <div class="grid links-grid">
+          <a class="card resource-link reveal"
+            href="https://www.w3schools.com/html/"
+            target="_blank" rel="noopener noreferrer">
+            <span class="resource-icon">📚</span>
+            <span>
+              <strong>Learn HTML</strong>
+              <p>Practice the building blocks of the web ↗</p>
+            </span>
+          </a>
+
+          <a class="card resource-link reveal"
+            href="https://github.com/"
+            target="_blank" rel="noopener noreferrer">
+            <span class="resource-icon">🐙</span>
+            <span>
+              <strong>Visit GitHub</strong>
+              <p>Explore repositories and host your projects ↗</p>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div style="font-size:2.5rem" aria-hidden="true">💜</div>
+          <h2>Let's Create Something Amazing!</h2>
+          <p>Have a project idea or want to connect? Say hello.</p>
+          <p><strong>Name:</strong> Ayesha</p>
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:ayesha@example.com">ayesha@example.com</a>
+          </p>
+          <p>
+            <strong>Phone:</strong>
+            <a href="tel:+923001234567">+92 300 1234567</a>
+          </p>
+          <div style="margin-top:25px">
+            <a class="btn btn-outline" href="mailto:ayesha@example.com">
+              Send Me an Email ✉️
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Made with 💜, creativity, and lots of learning.</p>
+      <p>© <span id="year"></span> Ayesha's Student Portfolio. All Rights Reserved.</p>
+      <a href="#home">Back to the top ↑</a>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" type="button"
+    aria-label="Back to top" title="Back to top" hidden>↑</button>
+
+  <script>
+    // ========== DARK / LIGHT MODE ==========
+    const themeToggle = document.getElementById("themeToggle");
+    const root = document.documentElement;
+
+    // Remember the theme when browser storage is available.
+    let savedTheme = null;
+    try {
+      savedTheme = localStorage.getItem("ayesha-portfolio-theme");
+    } catch (error) {
+      // The page still works if storage is unavailable.
+    }
+
+    const systemPrefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    function setTheme(theme) {
+      root.dataset.theme = theme;
+      const isDark = theme === "dark";
+
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+      themeToggle.setAttribute(
+        "aria-label",
+        isDark ? "Switch to light mode" : "Switch to dark mode"
+      );
+      themeToggle.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+
+      try {
+        localStorage.setItem("ayesha-portfolio-theme", theme);
+      } catch (error) {
+        // Theme switching remains functional for this page session.
+      }
+    }
+
+    setTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
+
+    themeToggle.addEventListener("click", () => {
+      setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+    });
+
+    // ========== MOBILE NAVIGATION ==========
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // ========== SCROLL REVEAL ==========
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries, currentObserver) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            currentObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealElements.forEach(element => observer.observe(element));
+    } else {
+      revealElements.forEach(element => element.classList.add("visible"));
+    }
+
+    // ========== BACK TO TOP & FOOTER YEAR ==========
+    const backTop = document.getElementById("backTop");
+
+    window.addEventListener("scroll", () => {
+      backTop.hidden = window.scrollY < 450;
+    }, { passive: true });
+
+    backTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Prevent choosing a future date of birth.
+    const dob = document.getElementById("dob");
+    dob.max = new Date().toISOString().split("T")[0];
+
+    // ========== REGISTRATION VALIDATION ==========
+    const form = document.getElementById("registrationForm");
+    const message = document.getElementById("formMessage");
+    const photo = document.getElementById("photo");
+    const photoHint = document.getElementById("photoHint");
+
+    function showMessage(text, success = false) {
+      message.textContent = text;
+      message.classList.add("show");
+      message.style.borderColor = success ? "#34d399" : "#f87171";
+      message.setAttribute("role", success ? "status" : "alert");
+      message.focus();
+    }
+
+    photo.addEventListener("change", () => {
+      const file = photo.files[0];
+      photo.setCustomValidity("");
+
+      if (file && !file.type.startsWith("image/")) {
+        photo.setCustomValidity("Please choose an image file.");
+        photoHint.textContent = "Please choose an image file.";
+        photoHint.style.color = "#ef4444";
+      } else if (file && file.size > 5 * 1024 * 1024) {
+        photo.setCustomValidity("Your image must be 5 MB or smaller.");
+        photoHint.textContent = "Your image is too large. Maximum size: 5 MB.";
+        photoHint.style.color = "#ef4444";
+      } else {
+        photoHint.textContent = "Optional. Image files only, up to 5 MB.";
+        photoHint.style.color = "";
+      }
+    });
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      message.classList.remove("show");
+
+      const password = document.getElementById("password");
+      password.setCustomValidity(
+        password.value.length < 8
+          ? "Please use at least 8 characters."
+          : ""
+      );
+
+      const birthDate = dob.value;
+      if (birthDate && birthDate > dob.max) {
+        dob.setCustomValidity("Date of birth cannot be in the future.");
+      } else {
+        dob.setCustomValidity("");
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        showMessage(
+          "Please check the highlighted fields and correct any invalid information."
+        );
+        return;
+      }
+
+      const studentName = document.getElementById("name").value.trim();
+
+      // Demo only: nothing is uploaded or saved to a server.
+      showMessage(
+        `🎉 Thank you, ${studentName}! Your demo form passed validation. ` +
+        "No registration has been sent or saved. Connect a secure backend " +
+        "if you want to store registrations.",
+        true
+      );
+    });
+
+    form.addEventListener("reset", () => {
+      message.classList.remove("show");
+      photo.setCustomValidity("");
+      dob.setCustomValidity("");
+      document.getElementById("password").setCustomValidity("");
+      photoHint.textContent = "Optional. Image files only, up to 5 MB.";
+      photoHint.style.color = "";
+    });
+  </script>
+</body>
+</html>
